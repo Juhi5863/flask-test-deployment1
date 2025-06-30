@@ -1,0 +1,8 @@
+version: 0.0
+Resources:
+  - Python_app:
+      Type: KubernetesResource
+      Properties:
+        Files:
+          - k8s/deployment.yaml
+          - k8s/service.yaml

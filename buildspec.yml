@@ -1,0 +1,22 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo loggin
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 408595458482.dkr.ecr.us-east-1.amazonaws.com/juhi
+
+  build:
+    commands:
+      - echo install depenecies
+      - pip install -r requirements.txt
+      - docker build -t 408595458482.dkr.ecr.us-east-1.amazonaws.com/juhi .
+
+  post_build:
+    commands:
+      - echo push
+      - docker push 408595458482.dkr.ecr.us-east-1.amazonaws.com/juhi
+
+artifacts:
+  files:
+    - appspec.yml
+    - k8s/**/*
